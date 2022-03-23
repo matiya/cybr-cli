@@ -1,0 +1,8 @@
+Package: cybr-cli
+Version: 0.1.8-1
+Architecture: amd64
+Section: utils
+Maintainer: Joe Garcia <joe.garcia@cyberark.com>
+Description: CLI for CyberArk products
+ A "Swiss Army Knife" command-line interface (CLI) for easy human and non-human interaction with CyberArk's suite of products.
+Homepage: https://github.com/infamousjoeg/cybr-cli
