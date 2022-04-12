@@ -60,8 +60,9 @@ pipeline {
         stage('Build Debian Package for apt') {
             steps {
                 sh '''
-                    dpkg -b ./debian ./debian
-                    ls ./debian | grep cybr-cli > pkg_name
+                    cd debian
+                    dpkg -b . .
+                    ls | grep cybr-cli > pkg_name
                 '''
             }
         }
@@ -71,7 +72,11 @@ pipeline {
                     conjurSecretCredential(credentialsId: 'cd-nexus-cybr-cli-apt-hosted-username', variable: 'NEXUS_USERNAME'),
                     conjurSecretCredential(credentialsId: 'cd-nexus-cybr-cli-apt-hosted-username', variable: 'NEXUS_PASSWORD')
                 ]) {
-                    sh 'curl -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -H "Content-Type: multipart/form-data" --data-binary "@./debian/$(cat pkg_name)" "http://nexus.cybr.rocks:8081/repository/apt-hosted/"'
+                    sh '''
+                        cd debian
+                        package=$(cat pkg_name)
+                        curl -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -H "Content-Type: multipart/form-data" --data-binary "@./${package}" "http://nexus.cybr.rocks:8081/repository/apt-hosted/"
+                    '''
                 }
             }
         }
