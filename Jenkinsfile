@@ -13,6 +13,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout repository') {
+            steps {
+                cleanWs()
+                checkout scm
+            }
+        }
         stage('Go Vet') {
             steps {
                 sh 'go version'
