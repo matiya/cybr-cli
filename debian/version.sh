@@ -10,7 +10,7 @@ main() {
     # Bump the version
     new="$ver-"$((rel+1))
     # Replace the version in the control file
-    sed -i "s/^Version:.*/Version: $new/" DEBIAN/control
+    sed -i "" "s/^Version:.*/Version: $new/" DEBIAN/control
     # Report the old and new version
     echo "Bumped version from $curr to $new"
 }
