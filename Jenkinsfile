@@ -75,7 +75,7 @@ pipeline {
                     sh '''
                         cd debian
                         package=$(cat pkg_name)
-                        curl --fail -v -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -H "Content-Type: multipart/form-data" --data-binary "@./${package}" "http://nexus.cybr.rocks:8081/repository/apt-hosted/"
+                        curl --fail -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -H "Content-Type: multipart/form-data" --data-binary "@./${package}" "http://nexus.cybr.rocks:8081/repository/apt-hosted/"
                     '''
                 }
             }
