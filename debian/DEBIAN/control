@@ -1,5 +1,5 @@
 Package: cybr-cli
-Version: 0.1.8-3
+Version: 0.1.8-4
 Architecture: amd64
 Section: utils
 Maintainer: Joe Garcia <joe.garcia@cyberark.com>
