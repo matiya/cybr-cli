@@ -14,3 +14,5 @@ main() {
     # Report the old and new version
     echo "Bumped version from $curr to $new"
 }
+
+main "$@"
