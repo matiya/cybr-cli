@@ -80,5 +80,17 @@ pipeline {
                 }
             }
         }
+        stage('Trigger Workflow in Ansible') {
+            steps {
+                withCredentials([
+                    conjurSecretCredential(credentialsId: 'ci-jenkins-cybr-cli-ansible-username', variable: 'ANSIBLE_USERNAME'),
+                    conjurSecretCredential(credentialsId: 'ci-jenkins-cybr-cli-ansible-password', variable: 'ANSIBLE_PASSWORD'),
+                ]) {
+                    sh '''
+                        curl -u "${ANSIBLE_USERNAME}:${ANSIBLE_PASSWORD}" -H "Content-type: application/json" -X POST -d '{}' https://aap2.cybr.rocks/api/v2/workflow_job_templates/13/launch/
+                    '''
+                }
+            }
+        }
     }
 }
