@@ -70,7 +70,7 @@ pipeline {
             steps {
                 withCredentials([
                     conjurSecretCredential(credentialsId: 'cd-nexus-cybr-cli-apt-hosted-username', variable: 'NEXUS_USERNAME'),
-                    conjurSecretCredential(credentialsId: 'cd-nexus-cybr-cli-apt-hosted-username', variable: 'NEXUS_PASSWORD')
+                    conjurSecretCredential(credentialsId: 'cd-nexus-cybr-cli-apt-hosted-password', variable: 'NEXUS_PASSWORD')
                 ]) {
                     sh '''
                         cd debian
